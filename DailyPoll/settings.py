@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'efc5003f-7ed8-4204-ab05-02a09f4fb736'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['thedailypollmaster.azurewebsites.net']
 
@@ -78,11 +78,20 @@ WSGI_APPLICATION = 'DailyPoll.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+            'ENGINE': 'sql_server.pyodbc',
+            'NAME': 'theDailyPoll',
+            'USER': 'theDailyPollAdmin',
+            'PASSWORD': 'theDailyPoll?',
+            'HOST': 'thedailypoll.database.windows.net',      
+            'PORT': '1433',
+            'OPTIONS': {
+                'driver': 'ODBC Driver 13 for SQL Server',
+                'dsn': 'theDailyPoll',
+                'MARS_Connection': 'True',
+            }
+        }
     }
-}
 
 LOGIN_URL = '/login'
 
